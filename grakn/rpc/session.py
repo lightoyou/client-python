@@ -83,7 +83,7 @@ class _SessionRPC(Session):
             options = GraknOptions.core()
         self._client = client
         self._address = client._address
-        self._channel = grpc.insecure_channel(client._address)
+        self._channel = grpc.aio.insecure_channel(client._address)
         self._scheduler = sched.scheduler(time.time, time.sleep)
         self._database = _DatabaseRPC(database_manager=client.databases(), name=database)
         self._session_type = session_type

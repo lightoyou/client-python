@@ -89,7 +89,7 @@ class _ClientRPC(GraknClient):
 
     def __init__(self, address: str):
         self._address = address
-        self._channel = grpc.insecure_channel(self._address)
+        self._channel = grpc.aio.insecure_channel(self._address)
         self._databases = _DatabaseManagerRPC(self._channel)
         self._sessions: Dict[bytes, _SessionRPC] = {}
         self._is_open = True

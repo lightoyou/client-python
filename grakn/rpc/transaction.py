@@ -54,7 +54,7 @@ class Transaction:
         self._logic_manager = LogicManager(self)
         self._response_queues = {}
 
-        self._grpc_stub = GraknStub(grpc.insecure_channel(address))
+        self._grpc_stub = GraknStub(grpc.aio.insecure_channel(address))
         self._request_iterator = RequestIterator()
         self._response_iterator = self._grpc_stub.transaction(self._request_iterator)
         self._transaction_was_closed = False
